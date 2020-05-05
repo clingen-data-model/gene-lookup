@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Omim\OmimClient;
-use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use GuzzleHttp\Exception\ClientException;
 
 class OmimLookupController extends Controller
 {
@@ -58,7 +59,7 @@ class OmimLookupController extends Controller
         });
         fclose($fh);
 
-        return response()->download($filepath)->deleteFileAfterSend();
+        return response()->download($filepath, 'omim_phenos_for_gene_'.Carbon::now()->format('Y-m-d_H:i:s').'.csv')->deleteFileAfterSend();
     }
 
     private function getOmimResults($geneSymbols)
