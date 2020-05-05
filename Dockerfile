@@ -12,15 +12,15 @@ COPY . /srv/app
 USER root
 RUN chgrp -R 0 /srv/app \
     && chmod -R g+w /srv/app \
-    && pecl install xdebug-2.9.5 \
-    && docker-php-ext-enable xdebug \
+    # && pecl install xdebug-2.9.5 \
+    # && docker-php-ext-enable xdebug \
     && chown -R www-data:www-data /srv/app
 
-COPY .docker/php/xdebug-dev.ini /usr/local/etc/php/conf.d/xdebug-dev.ini
+# COPY .docker/php/xdebug-dev.ini /usr/local/etc/php/conf.d/xdebug-dev.ini
 
-RUN cp -R /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d-dev \
-    && rm -f /usr/local//etc/php/conf.d/*-dev.ini \
-    && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
+# RUN cp -R /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d-dev \
+#     && rm -f /usr/local//etc/php/conf.d/*-dev.ini \
+#     && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
 
 USER 1001
 WORKDIR /srv/app
