@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'OmimLookupController@index');
     Route::post('/csv', 'OmimLookupController@getCsv');
-    Route::post('/', 'OmimLookupCOntroller@query');
+    Route::post('/', 'OmimLookupController@query');
 });
 
 Auth::routes();

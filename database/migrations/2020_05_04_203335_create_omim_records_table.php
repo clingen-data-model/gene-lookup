@@ -16,7 +16,6 @@ class CreateOmimRecordsTable extends Migration
         Schema::create('omim_records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('gene_symbol');
-            $table->
             $table->timestamps();
         });
     }
