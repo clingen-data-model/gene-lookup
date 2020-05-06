@@ -7,6 +7,7 @@ LABEL maintainer="TJ Ward" \
     io.k8s.display-name="gene-lookup version 1" \
     io.openshift.tags="php,apache"
 
+COPY .docker/php/composer-installer.sh /usr/local/bin/composer-installer
 COPY . /srv/app
 
 USER root
@@ -14,7 +15,15 @@ RUN chgrp -R 0 /srv/app \
     && chmod -R g+w /srv/app \
     # && pecl install xdebug-2.9.5 \
     # && docker-php-ext-enable xdebug \
-    && chown -R www-data:www-data /srv/app
+    && alias art="php artisan"
+
+WORKDIR /srv/app
+
+RUN composer install \
+        --no-interaction \
+        --no-plugins \
+        --no-scripts \
+        --prefer-dist
 
 # COPY .docker/php/xdebug-dev.ini /usr/local/etc/php/conf.d/xdebug-dev.ini
 
