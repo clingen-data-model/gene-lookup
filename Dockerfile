@@ -13,10 +13,9 @@ ENV XDG_CONFIG_HOME=/srv/app
 
 USER root
 RUN chgrp -R 0 /srv/app \
-    && chmod -R g+w /srv/app \
+    && chmod -R g+w /srv/app
     # && pecl install xdebug-2.9.5 \
     # && docker-php-ext-enable xdebug \
-    && alias art="php artisan"
 
 WORKDIR /srv/app
 
@@ -33,4 +32,5 @@ RUN composer install \
 #     && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
 
 USER 1001
-WORKDIR /srv/app
+
+# RUN  echo 'alias art="php artisan"' >> ~/.bashrc
