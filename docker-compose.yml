@@ -1,15 +1,17 @@
 version: "3"
 services: 
     app:
+        build: .
         image: genelookup_app
         container_name: genelookup_app
-        build: .
+        depends_on:
+            - mariadb
         ports:
             - "8080:8080"
-        volumes:
-            - .:/srv/app
         links:
             - mariadb:mariadb
+        volumes:
+            - .:/srv/app
         env_file: .docker.env
     mariadb:
         image: mariadb:10.1.21
@@ -20,10 +22,10 @@ services:
             - MYSQL_ROOT_PASSWORD=password
     artisan:
         image: genelookup_app
-        container_name: gl-artisan
+        container_name: genelookup_artisan
         volumes:
             - .:/srv/app
         entrypoint: [
             "php",
             "/srv/app/artisan"
-        ]    
+        ]

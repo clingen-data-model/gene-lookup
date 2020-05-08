@@ -7,8 +7,9 @@ LABEL maintainer="TJ Ward" \
     io.k8s.display-name="gene-lookup version 1" \
     io.openshift.tags="php,apache"
 
-COPY .docker/php/composer-installer.sh /usr/local/bin/composer-installer
 COPY . /srv/app
+
+ENV XDG_CONFIG_HOME=/srv/app
 
 USER root
 RUN chgrp -R 0 /srv/app \
