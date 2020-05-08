@@ -44,6 +44,17 @@
                     </form>
                 </div>
                 <div class='col-sm-9'>
+                    @if($results->count() == 0) 
+                        <div class="alert alert-secondary w-75">
+                            <h4>How to use this tool:</h4>
+                            <ol>
+                                <li>Upload a csv with a list of gene symbols in the first column OR enter a comma separated list of gene symbols by hand in the text area.</li>
+                                <li>Click submit on the appropriate form.</li>
+                                <li>If you would like to download a csv of the OMIM phenotype information, click the <button class="btn btn-light border btn-sm" disabled>Download CSV</button> button</li>
+                            </ol>
+                        </div>
+                        <div class="alert alert-warning w-75">We currently only get 5000 requests to the OMIM API each day. Please look for a small number of genes until we work out our daily OMIM API request cap. <br> Thanks.</div>
+                    @endif
                     @if($results->count() > 0)
                         <div class="clearfix mb-2">
                             <form action="/csv" method="POST" id="csv-form" class="float-right text-right">
@@ -51,7 +62,7 @@
                                 <input type="hidden" name="gene_symbols" value="{{ $geneSymbols->implode(",\n") }}">
                                 <button class="btn btn-sm btn-light border" type="submit">Download CSV</button>
                             </form>
-                            Count: {{$results->count()}}
+                            Found {{$phenotypeCount}} phenotypes for {{$results->count()}} genes.
                         </div>
                         <div class="border-bottom border-top" style="max-height: 600px; overflow-y: scroll;">
                             <table class="table table-striped">
@@ -78,8 +89,8 @@
                                                 @endforeach
                                             @else
                                                 <tr class="bg-orange-300">
-                                                    <td class="border p-1">{{$result->matches}}</td>
-                                                    <td class="border p-1" colspan="3">This gene does not have any phenotypes in OMIM</td>
+                                                    <td class="border p-1 text-muted">{{$result->matches}}</td>
+                                                    <td class="border p-1 text-muted" colspan="3">This gene does not have any phenotypes in OMIM</td>
                                                 </tr>
                                             @endif
                                         @php } catch (\Exception $e) { @endphp

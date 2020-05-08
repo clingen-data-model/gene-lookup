@@ -30,9 +30,10 @@ class OmimLookupController extends Controller
     {
         $geneSymbols = $this->getSymbolsFromRequest($request);
         $results = $this->getOmimResults($geneSymbols);
+        $phenotypeCount = $results->pluck('geneMap.phenotypeMapList')->flatten()->filter()->count();
         $has_header = $request->has_header;
         $gene_symbol_file = $request->gene_symbol_file;
-        return view('app', compact('results', 'geneSymbols', 'has_header', 'gene_symbol_file'));
+        return view('app', compact('results', 'geneSymbols', 'has_header', 'gene_symbol_file', 'phenotypeCount'));
     }
 
     public function getCsv(Request $request)
