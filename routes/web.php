@@ -20,4 +20,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/', 'OmimLookupController@query');
 });
 
+Route::redirect('/home', '/');
+
 Auth::routes();
