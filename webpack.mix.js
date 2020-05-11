@@ -16,4 +16,9 @@ mix.js('resources/js/app.js', 'public/js')
     .options({
         porcessCssUrl: false,
         postCss: [ tailwindcss('./resources/js/tailwind.config.js')]
-    });
+    })
+    .sourceMaps();
+
+if (mix.inProduction()) {
+    mix.version();
+}
