@@ -25,11 +25,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            Log::debug('schedule:run was run');
-        });
-        // $schedule->command('inspire')
-        //          ->hourly();
     }
 
     /**
