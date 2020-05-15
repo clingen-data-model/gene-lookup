@@ -1,3 +1,5 @@
+#!/bin/bash
+
 php artisan clear-compiled
 php artisan migrate --force --no-interaction
 php artisan cache:clear
