@@ -13,7 +13,8 @@ ENV XDG_CONFIG_HOME=/srv/app
 
 USER root
 RUN chgrp -R 0 /srv/app \
-    && chmod -R g+w /srv/app
+    && chmod -R g+w /srv/app \
+    && chmod g+x /srv/app/.openshift/deploy.sh
     # && pecl install xdebug-2.9.5 \
     # && docker-php-ext-enable xdebug \
 
