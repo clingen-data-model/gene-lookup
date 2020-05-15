@@ -1,5 +1,8 @@
 module.exports = {
-  purge: [],
+  purge: [
+    './comononents/**.vue',
+    '../../views/**/*.blade.php'
+  ],
   theme: {
     extend: {},
   },
