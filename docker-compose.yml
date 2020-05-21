@@ -9,16 +9,20 @@ services:
             - redis
         ports:
             - "8080:8080"
+            - "8443:8443"
         links:
             - mariadb:mariadb
             - redis:redis
         volumes:
             - .:/srv/app
+            - ./certs:/etc/ssl/certs
         env_file: .docker.env
     mariadb:
         image: mariadb:10.1.21
         ports:
             - "13306:3306"
+        volumes:
+            - .docker/mysql/data:/var/lib/mysql
         environment:
             - MYSQL_DATABASE=gene_lookup
             - MYSQL_ROOT_PASSWORD=password

@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 .docker.env
 psysh/psysh_history
+shibboleth2.xml

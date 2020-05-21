@@ -18,6 +18,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'OmimLookupController@index');
     Route::post('/csv', 'OmimLookupController@getCsv');
     Route::post('/', 'OmimLookupController@query');
+    Route::get('/test/info', 'TestController@phpinfo');
+    Route::get('/test/route-helper', 'TestController@testRouteHelper');
 });
 
 Route::redirect('/home', '/');

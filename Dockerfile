@@ -7,6 +7,11 @@ LABEL maintainer="TJ Ward" \
     io.k8s.display-name="gene-lookup version 1" \
     io.openshift.tags="php,apache"
 
+# An attempt to get apache to tell php it's using ssl.
+COPY .docker/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY .docker/apache/default-ssl.conf /etc/apache2/sites-enabled/
+COPY .docker/apache/conf.d/ports.conf /etc/apache2/ports.conf
+
 COPY . /srv/app
 
 ENV XDG_CONFIG_HOME=/srv/app
@@ -14,7 +19,8 @@ ENV XDG_CONFIG_HOME=/srv/app
 USER root
 RUN chgrp -R 0 /srv/app \
     && chmod -R g+w /srv/app \
-    && chmod g+x /srv/app/.openshift/deploy.sh
+    && chmod g+x /srv/app/.openshift/deploy.sh \
+    && a2enmod ssl
     # && pecl install xdebug-2.9.5 \
     # && docker-php-ext-enable xdebug \
 
