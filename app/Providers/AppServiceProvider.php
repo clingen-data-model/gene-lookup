@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Omim\OmimClient;
 use App\Omim\OmimClientContract;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+     
         Schema::defaultStringLength(191);
 
         $this->app->bind(OmimClientContract::class, OmimClient::class);
