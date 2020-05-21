@@ -9,7 +9,7 @@ LABEL maintainer="TJ Ward" \
 
 # An attempt to get apache to tell php it's using ssl.
 COPY .docker/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
-COPY .docker/apache/default-ssl.conf /etc/apache2/sites-enabled/
+# COPY .docker/apache/default-ssl.conf /etc/apache2/sites-enabled/
 COPY .docker/apache/conf.d/ports.conf /etc/apache2/ports.conf
 
 COPY . /srv/app
