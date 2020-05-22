@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://gene-lookup.unc.edu'),
 
+    'url_scheme' => env('URL_SCHEME', null),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*
