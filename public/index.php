@@ -25,7 +25,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 
 
-dd($_SERVER['REMOTE_USER']);
+dd($_SERVER);
 
 /*
 |--------------------------------------------------------------------------
