@@ -25,8 +25,6 @@ require __DIR__.'/../vendor/autoload.php';
 
 
 
-dd($_SERVER);
-
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights
